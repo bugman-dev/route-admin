@@ -1,5 +1,8 @@
+import { RouterProvider } from "react-router-dom";
+import useRoutes from "@ra/routing/routing";
+
 function App() {
-  return <h1>Route Engine Admin</h1>
+  return <RouterProvider router={useRoutes()} />;
 }
 
 export default App
