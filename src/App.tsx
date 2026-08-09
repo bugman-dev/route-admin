@@ -5,4 +5,4 @@ function App() {
   return <RouterProvider router={useRoutes()} />;
 }
 
-export default App
+export default App;

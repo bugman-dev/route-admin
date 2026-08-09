@@ -8,29 +8,29 @@ import RouteIconNav from "@ra/assets/icons/RouteIconNav";
 import SettingsIconNav from "@ra/assets/icons/SettingsIconNav";
 
 export const navItems: SideNavigationItem[] = [
-    {
-        id:sideNavigation.dashboard,
-        label: appTexts.sideNavigation.dashboard,
-        icon: <DashboardIconNav />,
-    },
-    {
-        id:sideNavigation.waypoints,
-        label: appTexts.sideNavigation.waypoints,
-        icon: <WaypointIconNav />,
-    },
-    {
-        id:sideNavigation.vehicles,
-        label: appTexts.sideNavigation.vehicles,
-        icon: <VehicleIconNav />,
-    },
-    {
-        id:sideNavigation.routes,
-        label: appTexts.sideNavigation.routes,
-        icon: <RouteIconNav />,
-    },
-    {
-        id:sideNavigation.settings,
-        label: appTexts.sideNavigation.settings,
-        icon: <SettingsIconNav />,
-    },
-]
+  {
+    id: sideNavigation.dashboard,
+    label: appTexts.sideNavigation.dashboard,
+    icon: <DashboardIconNav />,
+  },
+  {
+    id: sideNavigation.waypoints,
+    label: appTexts.sideNavigation.waypoints,
+    icon: <WaypointIconNav />,
+  },
+  {
+    id: sideNavigation.vehicles,
+    label: appTexts.sideNavigation.vehicles,
+    icon: <VehicleIconNav />,
+  },
+  {
+    id: sideNavigation.routes,
+    label: appTexts.sideNavigation.routes,
+    icon: <RouteIconNav />,
+  },
+  {
+    id: sideNavigation.settings,
+    label: appTexts.sideNavigation.settings,
+    icon: <SettingsIconNav />,
+  },
+];
