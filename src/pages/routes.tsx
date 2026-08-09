@@ -1,3 +1,5 @@
-export default function Routes(){
-    return <div>Routes</div>;
+import UnderConstruction from "@ra/components/UnderConstruction";
+
+export default function Routes() {
+  return <UnderConstruction />;
 }
