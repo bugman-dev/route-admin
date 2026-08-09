@@ -1,4 +1,5 @@
 const appColors = {
+  pageBackground: "#F6F8FC",
   primary: "#087CFF",
   backgroudSolid: "#102E4B",
   textWhite: "#FFFFFF",

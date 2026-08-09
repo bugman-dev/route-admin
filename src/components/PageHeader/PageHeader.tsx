@@ -3,13 +3,11 @@ import appColors from "@ra/assets/colors/appColors";
 import AppCard from "@ra/components/AppCard/AppCard";
 import { appTexts } from "@ra/constants/apptexts";
 import type { PageHeaderProps } from "@ra/interfaces/pageHeader";
+import { usePageHeader } from "@ra/hooks/usePageheader";
 
-export default function PageHeader({
-  title,
-  subtitle,
-  apiStatus = appTexts.pageHeaderCards.defaultApiStatus, // TODO: Replace with actual API status
-  serviceDate = appTexts.pageHeaderCards.defaultServiceDate, // TODO: Replace with actual service date
-}: PageHeaderProps) {
+export default function PageHeader({ title, subtitle }: PageHeaderProps) {
+  const { apiStatus, serviceDate } = usePageHeader();
+
   return (
     <div
       className="flex min-h-[50px] w-full items-center justify-between gap-4 border-b bg-white px-6 py-[14px]"

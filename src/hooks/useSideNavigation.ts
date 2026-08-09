@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { sideNavigation } from "@ra/constants/sideNavigation";
+import type { UseSideNavigationReturn } from "@ra/interfaces/sideNavigation.interface";
 
-export const useSideNavigation = () => {
+export const useSideNavigation = (): UseSideNavigationReturn => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

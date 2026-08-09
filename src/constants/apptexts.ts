@@ -22,4 +22,13 @@ export const appTexts = {
     defaultApiStatus: "Unknown",
     defaultServiceDate: "--/--/----",
   },
+  statusTexts: {
+    healthy: "Healthy",
+    unknown: "Unknown",
+    error: "Error",
+    warning: "Warning",
+    info: "Info",
+    critical: "Critical",
+    maintenance: "Maintenance",
+  },
 };

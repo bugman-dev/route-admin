@@ -4,3 +4,8 @@ export interface PageHeaderProps {
   apiStatus?: string;
   serviceDate?: string;
 }
+
+export interface UsePageHeaderReturn {
+  apiStatus: string;
+  serviceDate: string;
+}
