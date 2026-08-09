@@ -16,9 +16,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
-      "@ra/*": ["src/*"]
+      "@ra/*": ["./src/*"]
     }
   },
   "include": ["src"]
