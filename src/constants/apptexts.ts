@@ -10,4 +10,16 @@ export const appTexts = {
     title: "Under Construction",
     message: "This page is being built. Check back soon.",
   },
+  pageHeaders: {
+    dashboard: {
+      title: "Dashboard",
+      subtitle: "Overview of the fleet, stops, and today's route status",
+    },
+  },
+  pageHeaderCards: {
+    apiStatus: "API STATUS",
+    serviceDate: "SERVICE DATE (IST)",
+    defaultApiStatus: "Unknown",
+    defaultServiceDate: "--/--/----",
+  },
 };

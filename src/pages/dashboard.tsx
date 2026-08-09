@@ -1,5 +1,11 @@
-import UnderConstruction from "@ra/components/UnderConstruction";
+import PageHeader from "@ra/components/PageHeader/PageHeader";
+import { appTexts } from "@ra/constants/apptexts";
 
 export default function Dashboard() {
-  return <UnderConstruction />;
+  return (
+    <PageHeader
+      title={appTexts.pageHeaders.dashboard.title}
+      subtitle={appTexts.pageHeaders.dashboard.subtitle}
+    />
+  );
 }
