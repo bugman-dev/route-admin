@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import appUrls from "@ra/constants/appUrls";
 import AppLayout from "@ra/pages/AppLayout";
-import Dashboard from "@ra/pages/dashboard";
+import Dashboard from "@ra/pages/Dashboard/dashboard";
 import Waypoints from "@ra/pages/waypoints";
 import Routes from "@ra/pages/routes";
 import Vehicles from "@ra/pages/Vehicles";

@@ -22,6 +22,12 @@ export const appTexts = {
     defaultApiStatus: "Unknown",
     defaultServiceDate: "--/--/----",
   },
+  dashboardCards: {
+    capacityVsDemand: "CAPACITY VS DEMAND",
+    waypoints: "WAYPOINTS",
+    vehicles: "VEHICLES",
+    totalDemand: "TOTAL DEMAND",
+  },
   statusTexts: {
     healthy: "Healthy",
     unknown: "Unknown",
