@@ -12,6 +12,8 @@ const appColors = {
   secondaryOrange: "#FFF7ED",
   primaryPurple: "#7C3AED",
   secondaryPurple: "#F5F3FF",
+  primaryRed: "#F91616",
+  secondaryRed: "#FFEFED",
   textGrey: "#5D6E8B",
 };
 

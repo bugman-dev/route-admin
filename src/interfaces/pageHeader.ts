@@ -8,4 +8,5 @@ export interface PageHeaderProps {
 export interface UsePageHeaderReturn {
   apiStatus: string;
   serviceDate: string;
+  statusColor: string;
 }

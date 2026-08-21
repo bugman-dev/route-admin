@@ -3,6 +3,7 @@ import { appTexts } from "@ra/constants/apptexts";
 import type { UsePageHeaderReturn } from "@ra/interfaces/pageHeader";
 import { useEffect, useState } from "react";
 import { formatServiceDateIst } from "@ra/utils/helperFunctions.utils";
+import statusTextToColor from "@ra/utils/statusTextToColor";
 
 export const usePageHeader = (): UsePageHeaderReturn => {
   const [apiStatus, setApiStatus] = useState<string>(appTexts.pageHeaderCards.defaultApiStatus);
@@ -35,5 +36,7 @@ export const usePageHeader = (): UsePageHeaderReturn => {
     };
   }, []);
 
-  return { apiStatus, serviceDate };
+  const { primaryColor } = statusTextToColor(apiStatus);
+
+  return { apiStatus, serviceDate, statusColor: primaryColor };
 };

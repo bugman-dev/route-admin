@@ -6,7 +6,7 @@ import type { PageHeaderProps } from "@ra/interfaces/pageHeader";
 import { usePageHeader } from "@ra/hooks/usePageheader";
 
 export default function PageHeader({ title, subtitle }: PageHeaderProps) {
-  const { apiStatus, serviceDate } = usePageHeader();
+  const { apiStatus, serviceDate, statusColor } = usePageHeader();
 
   return (
     <div
@@ -34,9 +34,9 @@ export default function PageHeader({ title, subtitle }: PageHeaderProps) {
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <span
                   className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: appColors.primaryGreen }}
+                  style={{ backgroundColor: statusColor }}
                 />
-                <span className="text-sm font-medium" style={{ color: appColors.primaryGreen }}>
+                <span className="text-sm font-medium" style={{ color: statusColor }}>
                   {apiStatus}
                 </span>
               </div>
