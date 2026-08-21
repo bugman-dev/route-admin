@@ -28,6 +28,12 @@ export const appTexts = {
     vehicles: "VEHICLES",
     totalDemand: "TOTAL DEMAND",
   },
+  routeStatusCard: {
+    title: "Route Status",
+    lastGeneratedPrefix: "Last generated",
+    badgeCached: "Cached",
+    readyForDispatch: "routes are ready for dispatch",
+  },
   statusTexts: {
     healthy: "Healthy",
     unknown: "Unknown",
