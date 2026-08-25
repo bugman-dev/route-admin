@@ -27,6 +27,9 @@ export const appTexts = {
     waypoints: "WAYPOINTS",
     vehicles: "VEHICLES",
     totalDemand: "TOTAL DEMAND",
+    noDemand: "No demand",
+    active: "Active",
+    inclDepot: "(incl. depot)",
   },
   routeStatusCard: {
     title: "Route Status",

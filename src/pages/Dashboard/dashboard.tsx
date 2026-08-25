@@ -1,9 +1,19 @@
 import PageHeader from "@ra/components/PageHeader/PageHeader";
 import { appTexts } from "@ra/constants/apptexts";
+import { useDashboard } from "@ra/hooks/useDashboard";
 import DashboardCard from "./components/DashboardCard/DashboardCard";
 import RouteStatusCard from "./components/RouteStatusCard/RouteStatusCard";
 
 export default function Dashboard() {
+  const {
+    waypoints,
+    vehicles,
+    totalDemand,
+    capacityVsDemand,
+    capacityProgress,
+    capacitySecondaryValue,
+  } = useDashboard();
+
   return (
     <section>
       <PageHeader
@@ -13,24 +23,24 @@ export default function Dashboard() {
       <div className="mt-6 flex w-full items-stretch gap-4 px-6">
         <DashboardCard
           label={appTexts.dashboardCards.waypoints}
-          primaryValue="14 / 14"
-          secondaryValue="100 %"
+          primaryValue={waypoints.toString()}
+          secondaryValue={appTexts.dashboardCards.active}
         />
         <DashboardCard
           label={appTexts.dashboardCards.vehicles}
-          primaryValue="14 / 14"
-          secondaryValue="100 %"
+          primaryValue={vehicles.toString()}
+          secondaryValue={appTexts.dashboardCards.active}
         />
         <DashboardCard
           label={appTexts.dashboardCards.totalDemand}
-          primaryValue="14 / 14"
-          secondaryValue="100 %"
+          primaryValue={totalDemand.toString()}
+          secondaryValue={appTexts.dashboardCards.inclDepot}
         />
         <DashboardCard
           label={appTexts.dashboardCards.capacityVsDemand}
-          primaryValue="14 / 14"
-          secondaryValue="100 %"
-          progress={100}
+          primaryValue={capacityVsDemand}
+          secondaryValue={capacitySecondaryValue}
+          progress={capacityProgress}
         />
         <RouteStatusCard
           title={appTexts.routeStatusCard.title}
