@@ -3,6 +3,7 @@ import { appTexts } from "@ra/constants/apptexts";
 import { useDashboard } from "@ra/hooks/useDashboard";
 import DashboardCard from "./components/DashboardCard/DashboardCard";
 import RouteStatusCard from "./components/RouteStatusCard/RouteStatusCard";
+import { formatServiceDateIst } from "@ra/utils/helperFunctions.utils";
 
 export default function Dashboard() {
   const {
@@ -12,6 +13,8 @@ export default function Dashboard() {
     capacityVsDemand,
     capacityProgress,
     capacitySecondaryValue,
+    cachedLastGeneration,
+    lastGeneratedServiceDate,
   } = useDashboard();
 
   return (
@@ -44,8 +47,8 @@ export default function Dashboard() {
         />
         <RouteStatusCard
           title={appTexts.routeStatusCard.title}
-          lastGenerated={`${appTexts.routeStatusCard.lastGeneratedPrefix} 20 Aug 2025, 07:42 AM`}
-          badge={appTexts.routeStatusCard.badgeCached}
+          lastGenerated={`${appTexts.routeStatusCard.lastGeneratedPrefix} ${formatServiceDateIst(new Date(lastGeneratedServiceDate ?? ""))}`}
+          badge={cachedLastGeneration}
           statusMessage={`4 ${appTexts.routeStatusCard.readyForDispatch}`}
         />
       </div>

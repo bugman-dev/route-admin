@@ -18,6 +18,16 @@ export interface TotalCapacityResponse {
   active_only: boolean;
 }
 
+export interface RouteGenerationResponse {
+  cached: boolean;
+  service_date: string;
+  generated_at: string;
+  was_regenerated: boolean;
+  provider: string;
+  cost_mode: string;
+  routes: Record<string, unknown>[];
+}
+
 export interface UseDashboardReturn {
   waypoints: number;
   vehicles: number;
@@ -26,4 +36,10 @@ export interface UseDashboardReturn {
   capacityVsDemand: string;
   capacityProgress: number;
   capacitySecondaryValue: string;
+  cachedLastGeneration: {
+    badge: string;
+    textColor: string;
+    backgroundColor: string;
+  };
+  lastGeneratedServiceDate: string | null;
 }

@@ -25,11 +25,11 @@ export default function RouteStatusCard({
             <span
               className="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium"
               style={{
-                backgroundColor: appColors.secondaryGreen,
-                color: appColors.primaryGreen,
+                backgroundColor: badge.backgroundColor,
+                color: badge.textColor,
               }}
             >
-              {badge}
+              {badge.badge}
             </span>
           </div>
 

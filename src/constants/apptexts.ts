@@ -35,6 +35,8 @@ export const appTexts = {
     title: "Route Status",
     lastGeneratedPrefix: "Last generated",
     badgeCached: "Cached",
+    badgeGenerated: "Generated",
+    badgeUnknown: "Unknown",
     readyForDispatch: "routes are ready for dispatch",
   },
   statusTexts: {
