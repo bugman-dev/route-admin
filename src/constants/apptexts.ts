@@ -39,7 +39,8 @@ export const appTexts = {
       badgeCached: "Cached",
       badgeGenerated: "Generated",
       badgeUnknown: "Unknown",
-      readyForDispatch: "routes are ready for dispatch",
+      readyForDispatch: "Routes are ready for dispatch",
+      readyForDispatchLoading: "Routes are being checked...",
     },
     readinessChecklist: {
       title: "Readiness Checklist",

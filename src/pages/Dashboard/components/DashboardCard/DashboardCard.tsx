@@ -6,12 +6,14 @@ import WaypointDashboardIcon from "@ra/assets/icons/WaypointDashboardIcon";
 import VehicleIconNav from "@ra/assets/icons/VehicleIconNav";
 import RouteIconNav from "@ra/assets/icons/RouteIconNav";
 import TickIcon from "@ra/assets/icons/TickIcon";
+import { Spinner } from "@ra/components/Spinner";
 
 export default function DashboardCard({
   label,
   primaryValue,
   secondaryValue,
   progress,
+  loading,
 }: DashboardCardProps) {
   const clampedProgress = progress ? Math.min(100, Math.max(0, progress)) : null;
 
@@ -81,7 +83,9 @@ export default function DashboardCard({
         </span>
 
         <div className="flex w-full flex-col gap-1">
-          <span className="text-2xl font-bold leading-tight text-[#0f172a]">{primaryValue}</span>
+          <span className="text-2xl font-bold leading-tight text-[#0f172a]">
+            {loading ? <Spinner size={16} /> : primaryValue}
+          </span>
           <span className="text-sm font-medium" style={{ color: appColors.textGrey }}>
             {secondaryValue}
           </span>

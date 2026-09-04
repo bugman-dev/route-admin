@@ -50,28 +50,36 @@ export default function Dashboard() {
           label={appTexts.dashboardTexts.dashboardCards.waypoints}
           primaryValue={waypoints.toString()}
           secondaryValue={appTexts.dashboardTexts.dashboardCards.active}
+          loading={checklistLoading}
         />
         <DashboardCard
           label={appTexts.dashboardTexts.dashboardCards.vehicles}
           primaryValue={vehicles.toString()}
           secondaryValue={appTexts.dashboardTexts.dashboardCards.active}
+          loading={checklistLoading}
         />
         <DashboardCard
           label={appTexts.dashboardTexts.dashboardCards.totalDemand}
           primaryValue={totalDemand.toString()}
           secondaryValue={appTexts.dashboardTexts.dashboardCards.inclDepot}
+          loading={checklistLoading}
         />
         <DashboardCard
           label={appTexts.dashboardTexts.dashboardCards.capacityVsDemand}
           primaryValue={capacityVsDemand}
           secondaryValue={capacitySecondaryValue}
           progress={capacityProgress}
+          loading={checklistLoading}
         />
         <RouteStatusCard
           title={appTexts.dashboardTexts.routeStatusCard.title}
           lastGenerated={`${appTexts.dashboardTexts.routeStatusCard.lastGeneratedPrefix} ${formatServiceDateIst(lastGeneratedServiceDate) ?? "-"}`}
           badge={cachedLastGeneration}
-          statusMessage={`4 ${appTexts.dashboardTexts.routeStatusCard.readyForDispatch}`}
+          statusMessage={
+            checklistLoading && systemHealthLoading
+              ? appTexts.dashboardTexts.routeStatusCard.readyForDispatchLoading
+              : appTexts.dashboardTexts.routeStatusCard.readyForDispatch
+          }
         />
       </div>
 
