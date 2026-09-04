@@ -27,11 +27,15 @@ export default function ReadinessChecklist({
             <span
               className="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium"
               style={{
-                backgroundColor: badge.backgroundColor,
-                color: badge.textColor,
+                backgroundColor: readyToGenerate
+                  ? appColors.secondaryGreen
+                  : appColors.secondaryRed,
+                color: readyToGenerate ? appColors.primaryGreen : appColors.primaryRed,
               }}
             >
-              {badge.text}
+              {readyToGenerate
+                ? appTexts.dashboardTexts.readinessChecklist.badgeAllClear
+                : appTexts.dashboardTexts.readinessChecklist.badgeCritical}
             </span>
           </div>
 

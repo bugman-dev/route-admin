@@ -45,6 +45,7 @@ export const appTexts = {
       title: "Readiness Checklist",
       subtitle: "Fleet requirement before route generation",
       badgeAllClear: "All Clear",
+      badgeCritical: "Failed",
       footerReady: "All good! You are ready to generate routes.",
       footerCritical: "Critical issues found. Please fix them before generating routes.",
       checks: {

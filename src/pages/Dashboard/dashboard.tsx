@@ -69,7 +69,7 @@ export default function Dashboard() {
               backgroundColor: appColors.secondaryGreen,
             }}
             items={ChecklistItems}
-            readyToGenerate={false}
+            readyToGenerate={true}
           />
           <p>Pending routes</p>
         </div>
