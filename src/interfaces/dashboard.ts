@@ -100,6 +100,7 @@ export interface UseDashboardReturn {
   readyToGenerate: boolean;
 
   checklistLoading: boolean;
+  fleetActivityLoading: boolean;
 }
 
 export interface UseDashboardProps {

@@ -1,12 +1,14 @@
 import AppCard from "@ra/components/AppCard/AppCard";
 import appColors from "@ra/assets/colors/appColors";
 import type { FleetActivityProps } from "@ra/interfaces/fleetActivity";
+import { Spinner } from "@ra/components/Spinner";
 
 export default function FleetActivity({
   title,
   actionLabel,
   stats,
   onActionClick,
+  loading,
 }: FleetActivityProps) {
   return (
     <AppCard
@@ -35,7 +37,15 @@ export default function FleetActivity({
                 <span className="text-sm" style={{ color: appColors.textGrey }}>
                   {stat.label}
                 </span>
-                <span className="text-2xl font-bold text-[#0f172a]">{stat.value}</span>
+                <span className="text-2xl font-bold text-[#0f172a]">
+                  {loading ? (
+                    <div>
+                      <Spinner size={16} />
+                    </div>
+                  ) : (
+                    stat.value
+                  )}
+                </span>
               </div>
             ))}
           </div>

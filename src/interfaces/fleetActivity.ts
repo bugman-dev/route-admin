@@ -8,5 +8,6 @@ export interface FleetActivityProps {
   title: string;
   actionLabel: string;
   stats: FleetActivityStat[];
+  loading: boolean;
   onActionClick?: () => void;
 }

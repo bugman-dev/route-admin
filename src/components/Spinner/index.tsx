@@ -8,7 +8,7 @@ export const Spinner = ({ size = 40 }: SpinnerProps) => {
   const borderWidth = Math.max(2, Math.round(size / 8));
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-fit h-fit">
       <div
         className="animate-spin rounded-full border-solid"
         style={{

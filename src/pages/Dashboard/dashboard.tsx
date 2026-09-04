@@ -29,6 +29,7 @@ export default function Dashboard() {
     readyToGenerate,
     controlledTodaysRouteSummaryData,
     checklistLoading,
+    fleetActivityLoading,
   } = useDashboard({
     checklistData: ChecklistItems,
     fleetActivityData: FleetActivityList,
@@ -87,6 +88,7 @@ export default function Dashboard() {
             title={appTexts.dashboardTexts.fleetActivity.title}
             actionLabel={appTexts.dashboardTexts.fleetActivity.viewRoutes}
             stats={controlledFleetActivityData}
+            loading={fleetActivityLoading}
           />
         </div>
         <div className="flex min-w-0 flex-col gap-4">
