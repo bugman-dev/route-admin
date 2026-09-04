@@ -32,6 +32,7 @@ export const useDashboard = ({
 
   // System Health States
   const [controlledSystemHealthData, setControlledSystemHealthData] = useState(systemHealthData);
+  const [systemHealthLoading, setSystemHealthLoading] = useState(true);
 
   // Todays Route Summary States
   const [controlledTodaysRouteSummaryData, setControlledTodaysRouteSummaryData] =
@@ -160,7 +161,9 @@ export const useDashboard = ({
       if (!cancelled) setFleetActivityLoading(false);
     });
     void loadLastGeneratedRoutes();
-    void loadSystemHealth();
+    void Promise.all([loadSystemHealth()]).finally(() => {
+      if (!cancelled) setSystemHealthLoading(false);
+    });
     void loadTodaysRouteSummary();
     return () => {
       cancelled = true;
@@ -271,5 +274,6 @@ export const useDashboard = ({
 
     checklistLoading,
     fleetActivityLoading,
+    systemHealthLoading,
   };
 };

@@ -30,6 +30,7 @@ export default function Dashboard() {
     controlledTodaysRouteSummaryData,
     checklistLoading,
     fleetActivityLoading,
+    systemHealthLoading,
   } = useDashboard({
     checklistData: ChecklistItems,
     fleetActivityData: FleetActivityList,
@@ -95,6 +96,7 @@ export default function Dashboard() {
           <SystemHealth
             title={appTexts.dashboardTexts.systemHealth.title}
             items={controlledSystemHealthData}
+            loading={systemHealthLoading}
           />
           <TodaysRouteSummary
             title={appTexts.dashboardTexts.todaysRouteSummary.title}

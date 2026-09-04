@@ -101,6 +101,7 @@ export interface UseDashboardReturn {
 
   checklistLoading: boolean;
   fleetActivityLoading: boolean;
+  systemHealthLoading: boolean;
 }
 
 export interface UseDashboardProps {

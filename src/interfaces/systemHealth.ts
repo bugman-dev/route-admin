@@ -9,4 +9,5 @@ export interface SystemHealthItem {
 export interface SystemHealthProps {
   title: string;
   items: SystemHealthItem[];
+  loading: boolean;
 }

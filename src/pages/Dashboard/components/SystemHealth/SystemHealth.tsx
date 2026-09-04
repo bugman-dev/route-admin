@@ -5,6 +5,7 @@ import DatabaseIcon from "@ra/assets/icons/DatabaseIcon";
 import { appTexts } from "@ra/constants/apptexts";
 import type { SystemHealthProps } from "@ra/interfaces/systemHealth";
 import RouteIcon from "@ra/assets/icons/RouteIcon";
+import { Spinner } from "@ra/components/Spinner";
 
 function HealthIcon({ type, color }: { type: string; color: string }) {
   switch (type) {
@@ -33,7 +34,7 @@ function statusColors(healthy: boolean, status: string) {
   };
 }
 
-export default function SystemHealth({ title, items }: SystemHealthProps) {
+export default function SystemHealth({ title, items, loading }: SystemHealthProps) {
   return (
     <AppCard
       className="w-full"
@@ -60,7 +61,7 @@ export default function SystemHealth({ title, items }: SystemHealthProps) {
                     <span className="text-sm font-semibold text-[#0f172a]">{item.label}</span>
                   </div>
                   <span className="shrink-0 text-sm font-medium" style={{ color: statusColor }}>
-                    {item.status}
+                    {loading ? <Spinner size={16} /> : item.status}
                   </span>
                 </li>
               );
