@@ -19,7 +19,7 @@ export default function RouteStatusCard({
             <div className="flex min-w-0 flex-col gap-1">
               <h2 className="text-base font-semibold text-[#0f172a]">{title}</h2>
               <p className="text-sm" style={{ color: appColors.textGrey }}>
-                {lastGenerated}
+                {lastGenerated ?? "-"}
               </p>
             </div>
             <span

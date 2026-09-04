@@ -17,7 +17,7 @@ export default function DashboardCard({
 
   const generateCardElements = () => {
     switch (label) {
-      case appTexts.dashboardCards.capacityVsDemand:
+      case appTexts.dashboardTexts.dashboardCards.capacityVsDemand:
         return {
           backgroundColor: `${appColors.secondaryGreen}`,
           color: appColors.primaryGreen,
@@ -25,7 +25,7 @@ export default function DashboardCard({
           showProgress: clampedProgress ? true : false,
         };
 
-      case appTexts.dashboardCards.waypoints:
+      case appTexts.dashboardTexts.dashboardCards.waypoints:
         return {
           backgroundColor: `${appColors.primaryBackground}`,
           color: appColors.primary,
@@ -33,7 +33,7 @@ export default function DashboardCard({
           showProgress: clampedProgress ? true : false,
         };
 
-      case appTexts.dashboardCards.vehicles:
+      case appTexts.dashboardTexts.dashboardCards.vehicles:
         return {
           backgroundColor: `${appColors.secondaryPurple}1A`,
           color: appColors.primaryPurple,
@@ -41,7 +41,7 @@ export default function DashboardCard({
           showProgress: clampedProgress ? true : false,
         };
 
-      case appTexts.dashboardCards.totalDemand:
+      case appTexts.dashboardTexts.dashboardCards.totalDemand:
         return {
           backgroundColor: `${appColors.secondaryOrange}1A`,
           color: appColors.primaryOrange,

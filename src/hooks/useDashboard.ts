@@ -65,24 +65,26 @@ export const useDashboard = (): UseDashboardReturn => {
 
   const cachedLastGeneration = lastGenerationCached
     ? {
-        badge: appTexts.routeStatusCard.badgeCached,
+        badge: appTexts.dashboardTexts.routeStatusCard.badgeCached,
         textColor: appColors.primaryGreen,
         backgroundColor: appColors.secondaryGreen,
       }
     : lastGenerationCached === null
       ? {
-          badge: appTexts.routeStatusCard.badgeUnknown,
+          badge: appTexts.dashboardTexts.routeStatusCard.badgeUnknown,
           textColor: appColors.primaryRed,
           backgroundColor: appColors.secondaryRed,
         }
       : {
-          badge: appTexts.routeStatusCard.badgeGenerated,
+          badge: appTexts.dashboardTexts.routeStatusCard.badgeGenerated,
           textColor: appColors.primaryGreen,
           backgroundColor: appColors.secondaryGreen,
         };
 
   const capacityProgress =
     capacity > 0 ? Math.min(100, Math.round((totalDemand / capacity) * 100)) : 0;
+
+  // Readyness Checklist Data
 
   return {
     waypoints,
@@ -91,7 +93,7 @@ export const useDashboard = (): UseDashboardReturn => {
     capacityVsDemand: `${capacity} / ${totalDemand}`,
     capacityProgress,
     capacitySecondaryValue:
-      totalDemand === 0 ? appTexts.dashboardCards.noDemand : `${capacityProgress} %`,
+      totalDemand === 0 ? appTexts.dashboardTexts.dashboardCards.noDemand : `${capacityProgress} %`,
     cachedLastGeneration,
     lastGeneratedServiceDate,
   };

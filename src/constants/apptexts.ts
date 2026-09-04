@@ -22,23 +22,46 @@ export const appTexts = {
     defaultApiStatus: "Unknown",
     defaultServiceDate: "--/--/----",
   },
-  dashboardCards: {
-    capacityVsDemand: "CAPACITY VS DEMAND",
-    waypoints: "WAYPOINTS",
-    vehicles: "VEHICLES",
-    totalDemand: "TOTAL DEMAND",
-    noDemand: "No demand",
-    active: "Active",
-    inclDepot: "(incl. depot)",
+  // Dashboard Texts
+  dashboardTexts: {
+    dashboardCards: {
+      capacityVsDemand: "CAPACITY VS DEMAND",
+      waypoints: "WAYPOINTS",
+      vehicles: "VEHICLES",
+      totalDemand: "TOTAL DEMAND",
+      noDemand: "No demand",
+      active: "Active",
+      inclDepot: "(incl. depot)",
+    },
+    routeStatusCard: {
+      title: "Route Status",
+      lastGeneratedPrefix: "Last generated",
+      badgeCached: "Cached",
+      badgeGenerated: "Generated",
+      badgeUnknown: "Unknown",
+      readyForDispatch: "routes are ready for dispatch",
+    },
+    readinessChecklist: {
+      title: "Readiness Checklist",
+      subtitle: "Fleet requirement before route generation",
+      badgeAllClear: "All Clear",
+      footerReady: "All good! You are ready to generate routes.",
+      footerCritical: "Critical issues found. Please fix them before generating routes.",
+      checks: {
+        activeWaypoint: "At least 1 active waypoint",
+        activeDepot: "Exactly 1 active depot",
+        activeVehicle: "At least 1 active vehicle",
+        capacity: "Total demand ≤ total capacity",
+      },
+      ids: {
+        activeWaypoint: "active-waypoint",
+        activeDepot: "active-depot",
+        activeVehicle: "active-vehicle",
+        capacity: "capacity",
+      },
+    },
   },
-  routeStatusCard: {
-    title: "Route Status",
-    lastGeneratedPrefix: "Last generated",
-    badgeCached: "Cached",
-    badgeGenerated: "Generated",
-    badgeUnknown: "Unknown",
-    readyForDispatch: "routes are ready for dispatch",
-  },
+
   statusTexts: {
     healthy: "Healthy",
     unknown: "Unknown",
