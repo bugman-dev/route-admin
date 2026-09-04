@@ -3,16 +3,16 @@ import appColors from "@ra/assets/colors/appColors";
 import ShieldCheckIcon from "@ra/assets/icons/ShieldCheckIcon";
 import DatabaseIcon from "@ra/assets/icons/DatabaseIcon";
 import { appTexts } from "@ra/constants/apptexts";
-import type { SystemHealthIconType, SystemHealthProps } from "@ra/interfaces/systemHealth";
+import type { SystemHealthProps } from "@ra/interfaces/systemHealth";
 import RouteIcon from "@ra/assets/icons/RouteIcon";
 
-function HealthIcon({ type, color }: { type: SystemHealthIconType; color: string }) {
+function HealthIcon({ type, color }: { type: string; color: string }) {
   switch (type) {
-    case "backend":
+    case appTexts.dashboardTexts.systemHealth.ids.backendApi:
       return <ShieldCheckIcon color={color} />;
-    case "database":
+    case appTexts.dashboardTexts.systemHealth.ids.database:
       return <DatabaseIcon color={color} />;
-    case "routing":
+    case appTexts.dashboardTexts.systemHealth.ids.routingOsrm:
       return <RouteIcon color={color} />;
   }
 }
@@ -56,7 +56,7 @@ export default function SystemHealth({ title, items }: SystemHealthProps) {
                       className="flex size-9 shrink-0 items-center justify-center rounded-lg"
                       style={{ backgroundColor: iconBackground }}
                     >
-                      <HealthIcon type={item.icon} color={iconColor} />
+                      <HealthIcon type={item.id} color={iconColor} />
                     </span>
                     <span className="text-sm font-semibold text-[#0f172a]">{item.label}</span>
                   </div>
