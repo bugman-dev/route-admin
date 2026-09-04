@@ -21,7 +21,11 @@ export default function SideNavigation() {
               ? "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium"
               : "flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-200"
           }
-          style={isActive ? { backgroundColor: appColors.primary, color: appColors.textWhite } : undefined}
+          style={
+            isActive
+              ? { backgroundColor: appColors.primary, color: appColors.textWhite }
+              : undefined
+          }
           onClick={() => {
             handlenavigationItemClick(item.id);
           }}

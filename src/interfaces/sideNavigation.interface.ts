@@ -3,3 +3,8 @@ export interface SideNavigationItem {
   label: string;
   icon?: React.ReactNode;
 }
+
+export interface UseSideNavigationReturn {
+  activeItem: string;
+  handlenavigationItemClick: (itemId: string) => void;
+}
