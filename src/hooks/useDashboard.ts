@@ -1,18 +1,22 @@
 import { getTotalCapacity, getTotalVehicles } from "@ra/factory/vehiclesFactory";
-import { getTotalDemand, getTotalWaypoints } from "@ra/factory/waypointsFactory";
+import { getTotalDemand, getTotalWaypoints, getWaypointDepots } from "@ra/factory/waypointsFactory";
 import { getLastGeneratedRoutes } from "@ra/factory/routesFactory";
 import { appTexts } from "@ra/constants/apptexts";
-import type { UseDashboardReturn } from "@ra/interfaces/dashboard";
+import type { CheckListData, UseDashboardReturn } from "@ra/interfaces/dashboard";
 import { useEffect, useState } from "react";
 import appColors from "@ra/assets/colors/appColors";
 
-export const useDashboard = (): UseDashboardReturn => {
+export const useDashboard = (checkListData: CheckListData[]): UseDashboardReturn => {
   const [waypoints, setWaypoints] = useState(0);
   const [vehicles, setVehicles] = useState(0);
   const [totalDemand, setTotalDemand] = useState(0);
   const [capacity, setCapacity] = useState(0);
   const [lastGeneratedServiceDate, setLastGeneratedServiceDate] = useState<string | null>(null);
   const [lastGenerationCached, setLastGenerationCached] = useState<boolean | null>(null);
+
+  // Readyness Checklist States
+  const [hasExactlyOneDepot, setHasExactlyOneDepot] = useState(false);
+  const [controlledChecklistData, setControlledChecklistData] = useState(checkListData);
 
   useEffect(() => {
     let cancelled = false;
@@ -55,8 +59,24 @@ export const useDashboard = (): UseDashboardReturn => {
       }
     };
 
+    const loadWaypointDepots = async () => {
+      try {
+        const waypointDepotsResult = await getWaypointDepots();
+        if (cancelled) return;
+        if (waypointDepotsResult.length === 1) {
+          setHasExactlyOneDepot(true);
+        } else {
+          setHasExactlyOneDepot(false);
+        }
+      } catch {
+        if (cancelled) return;
+      }
+    };
+
     void loadDashboardTotals();
     void loadLastGeneratedRoutes();
+
+    void loadWaypointDepots();
 
     return () => {
       cancelled = true;
@@ -85,6 +105,27 @@ export const useDashboard = (): UseDashboardReturn => {
     capacity > 0 ? Math.min(100, Math.round((totalDemand / capacity) * 100)) : 0;
 
   // Readyness Checklist Data
+  useEffect(() => {
+    const ids = appTexts.dashboardTexts.readinessChecklist.ids;
+
+    setControlledChecklistData((prev) =>
+      prev.map((item) => {
+        if (item.id === ids.activeDepot) {
+          return { ...item, passed: hasExactlyOneDepot };
+        }
+        if (item.id === ids.activeWaypoint) {
+          return { ...item, passed: waypoints > 0 };
+        }
+        if (item.id === ids.activeVehicle) {
+          return { ...item, passed: vehicles > 0 };
+        }
+        if (item.id === ids.capacity) {
+          return { ...item, passed: totalDemand <= capacity };
+        }
+        return item;
+      }),
+    );
+  }, [hasExactlyOneDepot, waypoints, vehicles, totalDemand, capacity]);
 
   return {
     waypoints,
@@ -96,5 +137,7 @@ export const useDashboard = (): UseDashboardReturn => {
       totalDemand === 0 ? appTexts.dashboardTexts.dashboardCards.noDemand : `${capacityProgress} %`,
     cachedLastGeneration,
     lastGeneratedServiceDate,
+    controlledChecklistData,
+    readyToGenerate: controlledChecklistData.every((item) => item.passed),
   };
 };

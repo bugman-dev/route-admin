@@ -1,3 +1,4 @@
+// API Responses Types
 export interface TotalWaypointsResponse {
   total_waypoints: number;
   active_only: boolean;
@@ -18,6 +19,21 @@ export interface TotalCapacityResponse {
   active_only: boolean;
 }
 
+export interface Waypoint {
+  id: number;
+  external_id: string | null;
+  name: string;
+  latitude: number;
+  longitude: number;
+  demand: number;
+  is_depot: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export type WaypointDepotsResponse = Waypoint[];
+
 export interface RouteGenerationResponse {
   cached: boolean;
   service_date: string;
@@ -28,6 +44,14 @@ export interface RouteGenerationResponse {
   routes: Record<string, unknown>[];
 }
 
+// Generic Types
+export interface CheckListData {
+  id: string;
+  label: string;
+  passed: boolean;
+}
+
+// Hook return types
 export interface UseDashboardReturn {
   waypoints: number;
   vehicles: number;
@@ -42,4 +66,7 @@ export interface UseDashboardReturn {
     backgroundColor: string;
   };
   lastGeneratedServiceDate: string | null;
+
+  controlledChecklistData: CheckListData[];
+  readyToGenerate: boolean;
 }

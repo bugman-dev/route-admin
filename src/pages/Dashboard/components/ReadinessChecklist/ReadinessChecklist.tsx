@@ -8,7 +8,6 @@ import CrossIcon from "@ra/assets/icons/Crossicon";
 export default function ReadinessChecklist({
   title,
   subtitle,
-  badge,
   items,
   readyToGenerate,
 }: ReadinessChecklistProps) {

@@ -13,7 +13,6 @@ export interface ReadinessChecklistBadge {
 export interface ReadinessChecklistProps {
   title: string;
   subtitle: string;
-  badge: ReadinessChecklistBadge;
   items: ReadinessCheckItem[];
   readyToGenerate: boolean;
 }

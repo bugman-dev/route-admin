@@ -52,7 +52,7 @@ export const appTexts = {
         activeWaypoint: "At least 1 active waypoint",
         activeDepot: "Exactly 1 active depot",
         activeVehicle: "At least 1 active vehicle",
-        capacity: "Total demand ≤ total capacity",
+        capacity: "Total demand ≤ total capacity",  
       },
       ids: {
         activeWaypoint: "active-waypoint",

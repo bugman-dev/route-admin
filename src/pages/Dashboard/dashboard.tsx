@@ -18,7 +18,10 @@ export default function Dashboard() {
     capacitySecondaryValue,
     cachedLastGeneration,
     lastGeneratedServiceDate,
-  } = useDashboard();
+    controlledChecklistData,
+    readyToGenerate,
+  } = useDashboard(ChecklistItems);
+  console.log(controlledChecklistData);
 
   return (
     <section>
@@ -63,13 +66,8 @@ export default function Dashboard() {
           <ReadinessChecklist
             title={appTexts.dashboardTexts.readinessChecklist.title}
             subtitle={appTexts.dashboardTexts.readinessChecklist.subtitle}
-            badge={{
-              text: appTexts.dashboardTexts.readinessChecklist.badgeAllClear,
-              textColor: appColors.primaryGreen,
-              backgroundColor: appColors.secondaryGreen,
-            }}
-            items={ChecklistItems}
-            readyToGenerate={true}
+            items={controlledChecklistData}
+            readyToGenerate={readyToGenerate}
           />
           <p>Pending routes</p>
         </div>
