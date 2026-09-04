@@ -11,6 +11,7 @@ export const useDashboard = ({
   checklistData,
   fleetActivityData,
   systemHealthData,
+  todaysRouteSummaryData,
 }: UseDashboardProps): UseDashboardReturn => {
   const [waypoints, setWaypoints] = useState(0);
   const [vehicles, setVehicles] = useState(0);
@@ -18,6 +19,7 @@ export const useDashboard = ({
   const [capacity, setCapacity] = useState(0);
   const [lastGeneratedServiceDate, setLastGeneratedServiceDate] = useState<string | null>(null);
   const [lastGenerationCached, setLastGenerationCached] = useState<boolean | null>(null);
+  
 
   // Readyness Checklist States
   const [hasExactlyOneDepot, setHasExactlyOneDepot] = useState(false);
@@ -29,6 +31,8 @@ export const useDashboard = ({
   // System Health States
   const [controlledSystemHealthData, setControlledSystemHealthData] = useState(systemHealthData);
 
+  // Todays Route Summary States
+  const [controlledTodaysRouteSummaryData, setControlledTodaysRouteSummaryData] = useState(todaysRouteSummaryData);
   useEffect(() => {
     let cancelled = false;
 
@@ -195,6 +199,8 @@ export const useDashboard = ({
     );
   }, [waypoints, vehicles]);
 
+  // Todays Route Summary Data
+
   return {
     waypoints,
     vehicles,
@@ -208,6 +214,7 @@ export const useDashboard = ({
     controlledChecklistData,
     controlledFleetActivityData,
     controlledSystemHealthData,
+    controlledTodaysRouteSummaryData,
     readyToGenerate: controlledChecklistData.every((item) => item.passed),
   };
 };

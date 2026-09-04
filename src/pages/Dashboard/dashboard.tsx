@@ -7,9 +7,11 @@ import RouteStatusCard from "./components/RouteStatusCard/RouteStatusCard";
 import ReadinessChecklist from "./components/ReadinessChecklist/ReadinessChecklist";
 import FleetActivity from "./components/FleetActivity/FleetActivity";
 import SystemHealth from "./components/SystemHealth/SystemHealth";
+import TodaysRouteSummary from "./components/TodaysRouteSummary/TodaysRouteSummary";
 import { ChecklistItems } from "./components/RouteStatusCard/ChecklistItems";
 import { FleetActivityList } from "./components/FleetActivity/FleetActivityList";
 import { SystemHealthList } from "./components/SystemHealth/SystemHealthList";
+import { RoutsStatsList } from "./components/TodaysRouteSummary/RoutsStatsList";
 
 export default function Dashboard() {
   const {
@@ -25,10 +27,12 @@ export default function Dashboard() {
     controlledFleetActivityData,
     controlledSystemHealthData,
     readyToGenerate,
+    controlledTodaysRouteSummaryData,
   } = useDashboard({
     checklistData: ChecklistItems,
     fleetActivityData: FleetActivityList,
     systemHealthData: SystemHealthList,
+    todaysRouteSummaryData: RoutsStatsList,
   });
 
   return (
@@ -88,7 +92,12 @@ export default function Dashboard() {
             title={appTexts.dashboardTexts.systemHealth.title}
             items={controlledSystemHealthData}
           />
-          <p>Placeholder text</p>
+          <TodaysRouteSummary
+            title={appTexts.dashboardTexts.todaysRouteSummary.title}
+            subtitle={appTexts.dashboardTexts.todaysRouteSummary.subtitle}
+            actionLabel={appTexts.dashboardTexts.todaysRouteSummary.actionLabel}
+            stats={controlledTodaysRouteSummaryData}
+          />
         </div>
       </div>
     </section>

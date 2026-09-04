@@ -1,4 +1,5 @@
 import type { SystemHealthItem } from "@ra/interfaces/systemHealth";
+import type { TodaysRouteSummaryStat } from "./todaysRouteSummary";
 
 // API Responses Types
 export interface TotalWaypointsResponse {
@@ -78,6 +79,7 @@ export interface UseDashboardReturn {
   controlledChecklistData: CheckListData[];
   controlledFleetActivityData: FleetActivityData[];
   controlledSystemHealthData: SystemHealthItem[];
+  controlledTodaysRouteSummaryData: TodaysRouteSummaryStat[];
   readyToGenerate: boolean;
 }
 
@@ -85,4 +87,5 @@ export interface UseDashboardProps {
   checklistData: CheckListData[];
   fleetActivityData: FleetActivityData[];
   systemHealthData: SystemHealthItem[];
+  todaysRouteSummaryData: TodaysRouteSummaryStat[];
 }
