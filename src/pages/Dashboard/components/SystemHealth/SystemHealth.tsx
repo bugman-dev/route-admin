@@ -34,7 +34,6 @@ function statusColors(healthy: boolean, status: string) {
 }
 
 export default function SystemHealth({ title, items }: SystemHealthProps) {
-  console.log(items);
   return (
     <AppCard
       className="w-full"

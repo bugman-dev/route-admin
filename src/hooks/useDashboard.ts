@@ -1,11 +1,12 @@
 import { getTotalCapacity, getTotalVehicles } from "@ra/factory/vehiclesFactory";
 import { getTotalDemand, getTotalWaypoints, getWaypointDepots } from "@ra/factory/waypointsFactory";
-import { getLastGeneratedRoutes } from "@ra/factory/routesFactory";
+import { getLastGeneratedRoutes, getRoutesByServiceDate } from "@ra/factory/routesFactory";
 import { getHealth } from "@ra/factory/healthFactory";
 import { appTexts } from "@ra/constants/apptexts";
 import type { UseDashboardProps, UseDashboardReturn } from "@ra/interfaces/dashboard";
 import { useEffect, useState } from "react";
 import appColors from "@ra/assets/colors/appColors";
+import { formatSecondsToHoursMinutes } from "@ra/utils/helperFunctions.utils";
 
 export const useDashboard = ({
   checklistData,
@@ -19,7 +20,6 @@ export const useDashboard = ({
   const [capacity, setCapacity] = useState(0);
   const [lastGeneratedServiceDate, setLastGeneratedServiceDate] = useState<string | null>(null);
   const [lastGenerationCached, setLastGenerationCached] = useState<boolean | null>(null);
-  
 
   // Readyness Checklist States
   const [hasExactlyOneDepot, setHasExactlyOneDepot] = useState(false);
@@ -32,7 +32,12 @@ export const useDashboard = ({
   const [controlledSystemHealthData, setControlledSystemHealthData] = useState(systemHealthData);
 
   // Todays Route Summary States
-  const [controlledTodaysRouteSummaryData, setControlledTodaysRouteSummaryData] = useState(todaysRouteSummaryData);
+  const [controlledTodaysRouteSummaryData, setControlledTodaysRouteSummaryData] =
+    useState(todaysRouteSummaryData);
+  const [totalRoutes, setTotalRoutes] = useState(0);
+  const [totalDistance, setTotalDistance] = useState(0);
+  const [totalDuration, setTotalDuration] = useState(0);
+
   useEffect(() => {
     let cancelled = false;
 
@@ -125,11 +130,34 @@ export const useDashboard = ({
       }
     };
 
+    const loadTodaysRouteSummary = async () => {
+      try {
+        const todaysRouteSummaryResult = await getRoutesByServiceDate(
+          new Date().toISOString().split("T")[0],
+        );
+        if (cancelled) return;
+        const totalDistance = todaysRouteSummaryResult.routes.reduce(
+          (acc, route) => acc + route.leg_distances_km.reduce((acc, distance) => acc + distance, 0),
+          0,
+        );
+        const totalDuration = todaysRouteSummaryResult.routes.reduce(
+          (acc, route) => acc + route.etas_seconds[route.etas_seconds.length - 1],
+          0,
+        );
+
+        setTotalRoutes(todaysRouteSummaryResult.routes.length);
+        setTotalDistance(totalDistance);
+        setTotalDuration(totalDuration);
+      } catch {
+        if (cancelled) return;
+      }
+    };
+
     void loadDashboardTotals();
     void loadLastGeneratedRoutes();
     void loadWaypointDepots();
     void loadSystemHealth();
-
+    void loadTodaysRouteSummary();
     return () => {
       cancelled = true;
     };
@@ -199,7 +227,26 @@ export const useDashboard = ({
     );
   }, [waypoints, vehicles]);
 
-  // Todays Route Summary Data
+  // Todays Route Summary
+  useEffect(() => {
+    setControlledTodaysRouteSummaryData((prev) =>
+      prev.map((item) => {
+        if (item.id === appTexts.dashboardTexts.todaysRouteSummary.ids.routes) {
+          return { ...item, value: totalRoutes.toString() };
+        }
+        if (item.id === appTexts.dashboardTexts.todaysRouteSummary.ids.activeVehicles) {
+          return { ...item, value: vehicles.toString() };
+        }
+        if (item.id === appTexts.dashboardTexts.todaysRouteSummary.ids.totalDistance) {
+          return { ...item, value: `${totalDistance} km` };
+        }
+        if (item.id === appTexts.dashboardTexts.todaysRouteSummary.ids.totalDuration) {
+          return { ...item, value: formatSecondsToHoursMinutes(totalDuration) };
+        }
+        return item;
+      }),
+    );
+  }, [totalRoutes, vehicles, totalDistance, totalDuration]);
 
   return {
     waypoints,

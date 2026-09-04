@@ -37,6 +37,19 @@ export interface Waypoint {
 
 export type WaypointDepotsResponse = Waypoint[];
 
+export interface GeneratedRoute {
+  stops: string[];
+  capacity: number;
+  operator: string;
+  cost_mode: string;
+  vehicle_id: string;
+  etas_seconds: number[];
+  vehicle_number: string;
+  leg_distances_km: number[];
+  total_distance_km: number;
+  total_duration_seconds: number;
+}
+
 export interface RouteGenerationResponse {
   cached: boolean;
   service_date: string;
@@ -44,7 +57,11 @@ export interface RouteGenerationResponse {
   was_regenerated: boolean;
   provider: string;
   cost_mode: string;
-  routes: Record<string, unknown>[];
+  routes: GeneratedRoute[];
+}
+
+export interface RouteNotFoundResponse {
+  detail: string;
 }
 
 // Generic Types

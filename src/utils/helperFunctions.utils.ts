@@ -32,3 +32,22 @@ export function formatServiceDateIst(date: Date | string | null | undefined = ne
 
   return `${get("day")} ${get("month")} ${get("year")}, ${get("weekday")}`;
 }
+
+/**
+ * Converts a duration in seconds to an `Xh Ym` string.
+ *
+ * @param seconds - Total duration in seconds. Negative values are treated as 0.
+ * @returns A string like `2h 22m`. Seconds under a full minute are floored away.
+ * @example
+ * // Input:  8554
+ * // Output: "2h 22m"
+ * @example
+ * // Input:  4046
+ * // Output: "1h 7m"
+ */
+export function formatSecondsToHoursMinutes(seconds: number): string {
+  const totalSeconds = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0;
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
+}
