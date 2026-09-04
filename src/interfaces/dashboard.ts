@@ -98,6 +98,8 @@ export interface UseDashboardReturn {
   controlledSystemHealthData: SystemHealthItem[];
   controlledTodaysRouteSummaryData: TodaysRouteSummaryStat[];
   readyToGenerate: boolean;
+
+  checklistLoading: boolean;
 }
 
 export interface UseDashboardProps {

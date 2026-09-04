@@ -15,4 +15,5 @@ export interface ReadinessChecklistProps {
   subtitle: string;
   items: ReadinessCheckItem[];
   readyToGenerate: boolean;
+  loading: boolean;
 }

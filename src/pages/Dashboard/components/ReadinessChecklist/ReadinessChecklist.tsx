@@ -4,12 +4,14 @@ import appColors from "@ra/assets/colors/appColors";
 import type { ReadinessChecklistProps } from "@ra/interfaces/readinessChecklist";
 import { appTexts } from "@ra/constants/apptexts";
 import CrossIcon from "@ra/assets/icons/Crossicon";
+import { Spinner } from "@ra/components/Spinner";
 
 export default function ReadinessChecklist({
   title,
   subtitle,
   items,
   readyToGenerate,
+  loading,
 }: ReadinessChecklistProps) {
   return (
     <AppCard
@@ -26,15 +28,23 @@ export default function ReadinessChecklist({
             <span
               className="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium"
               style={{
-                backgroundColor: readyToGenerate
-                  ? appColors.secondaryGreen
-                  : appColors.secondaryRed,
-                color: readyToGenerate ? appColors.primaryGreen : appColors.primaryRed,
+                backgroundColor: loading
+                  ? appColors.pageBackground
+                  : readyToGenerate
+                    ? appColors.secondaryGreen
+                    : appColors.secondaryRed,
+                color: loading
+                  ? appColors.textGrey
+                  : readyToGenerate
+                    ? appColors.primaryGreen
+                    : appColors.primaryRed,
               }}
             >
-              {readyToGenerate
-                ? appTexts.dashboardTexts.readinessChecklist.badgeAllClear
-                : appTexts.dashboardTexts.readinessChecklist.badgeCritical}
+              {loading
+                ? appTexts.dashboardTexts.readinessChecklist.badgeLoading
+                : readyToGenerate
+                  ? appTexts.dashboardTexts.readinessChecklist.badgeAllClear
+                  : appTexts.dashboardTexts.readinessChecklist.badgeCritical}
             </span>
           </div>
 
@@ -56,7 +66,13 @@ export default function ReadinessChecklist({
                     className="shrink-0 text-sm font-medium"
                     style={{ color: item.passed ? appColors.primaryGreen : appColors.primaryRed }}
                   >
-                    {item.passed ? appTexts.statusTexts.healthy : appTexts.statusTexts.critical}
+                    {loading ? (
+                      <Spinner size={16} />
+                    ) : item.passed ? (
+                      appTexts.statusTexts.healthy
+                    ) : (
+                      appTexts.statusTexts.critical
+                    )}
                   </span>
                 </div>
                 {index < items.length - 1 ? (
@@ -70,15 +86,23 @@ export default function ReadinessChecklist({
             <div
               className="rounded-lg px-4 py-3 text-sm font-medium"
               style={{
-                backgroundColor: readyToGenerate
-                  ? appColors.secondaryGreen
-                  : appColors.secondaryRed,
-                color: readyToGenerate ? appColors.primaryGreen : appColors.primaryRed,
+                backgroundColor: loading
+                  ? appColors.pageBackground
+                  : readyToGenerate
+                    ? appColors.secondaryGreen
+                    : appColors.secondaryRed,
+                color: loading
+                  ? appColors.textGrey
+                  : readyToGenerate
+                    ? appColors.primaryGreen
+                    : appColors.primaryRed,
               }}
             >
-              {readyToGenerate
-                ? appTexts.dashboardTexts.readinessChecklist.footerReady
-                : appTexts.dashboardTexts.readinessChecklist.footerCritical}
+              {loading
+                ? appTexts.dashboardTexts.readinessChecklist.footerLoading
+                : readyToGenerate
+                  ? appTexts.dashboardTexts.readinessChecklist.footerReady
+                  : appTexts.dashboardTexts.readinessChecklist.footerCritical}
             </div>
           </div>
         </div>

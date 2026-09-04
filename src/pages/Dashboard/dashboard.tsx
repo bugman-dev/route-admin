@@ -28,6 +28,7 @@ export default function Dashboard() {
     controlledSystemHealthData,
     readyToGenerate,
     controlledTodaysRouteSummaryData,
+    checklistLoading,
   } = useDashboard({
     checklistData: ChecklistItems,
     fleetActivityData: FleetActivityList,
@@ -80,6 +81,7 @@ export default function Dashboard() {
             subtitle={appTexts.dashboardTexts.readinessChecklist.subtitle}
             items={controlledChecklistData}
             readyToGenerate={readyToGenerate}
+            loading={checklistLoading}
           />
           <FleetActivity
             title={appTexts.dashboardTexts.fleetActivity.title}

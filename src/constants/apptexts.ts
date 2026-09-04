@@ -46,8 +46,10 @@ export const appTexts = {
       subtitle: "Fleet requirement before route generation",
       badgeAllClear: "All Clear",
       badgeCritical: "Failed",
+      badgeLoading: "Checking...",
       footerReady: "All good! You are ready to generate routes.",
       footerCritical: "Critical issues found. Please fix them before generating routes.",
+      footerLoading: "Checking readiness...",
       checks: {
         activeWaypoint: "At least 1 active waypoint",
         activeDepot: "Exactly 1 active depot",

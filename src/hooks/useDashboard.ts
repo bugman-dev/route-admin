@@ -24,6 +24,7 @@ export const useDashboard = ({
   // Readyness Checklist States
   const [hasExactlyOneDepot, setHasExactlyOneDepot] = useState(false);
   const [controlledChecklistData, setControlledChecklistData] = useState(checklistData);
+  const [checklistLoading, setChecklistLoading] = useState(true);
 
   // Fleet Activity States
   const [controlledFleetActivityData, setControlledFleetActivityData] = useState(fleetActivityData);
@@ -153,9 +154,10 @@ export const useDashboard = ({
       }
     };
 
-    void loadDashboardTotals();
+    void Promise.all([loadDashboardTotals(), loadWaypointDepots()]).finally(() => {
+      if (!cancelled) setChecklistLoading(false);
+    });
     void loadLastGeneratedRoutes();
-    void loadWaypointDepots();
     void loadSystemHealth();
     void loadTodaysRouteSummary();
     return () => {
@@ -264,5 +266,7 @@ export const useDashboard = ({
     controlledSystemHealthData,
     controlledTodaysRouteSummaryData,
     readyToGenerate: controlledChecklistData.every((item) => item.passed),
+
+    checklistLoading,
   };
 };
