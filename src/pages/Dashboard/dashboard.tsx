@@ -69,8 +69,8 @@ export default function Dashboard() {
       </div>
 
       {/* GENERIC INFORMATION */}
-      <div className="mt-6 flex w-full gap-4 px-6">
-        <div className="flex flex-col gap-4">
+      <div className="mt-6 grid w-full grid-cols-[3fr_2fr] gap-4 px-6">
+        <div className="flex min-w-0 flex-col gap-4">
           <ReadinessChecklist
             title={appTexts.dashboardTexts.readinessChecklist.title}
             subtitle={appTexts.dashboardTexts.readinessChecklist.subtitle}
@@ -83,7 +83,7 @@ export default function Dashboard() {
             stats={controlledFleetActivityData}
           />
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex min-w-0 flex-col gap-4">
           <SystemHealth
             title={appTexts.dashboardTexts.systemHealth.title}
             items={controlledSystemHealthData}

@@ -10,16 +10,16 @@ export const ChecklistItems: CheckListData[] = [
   {
     id: appTexts.dashboardTexts.readinessChecklist.ids.activeDepot,
     label: appTexts.dashboardTexts.readinessChecklist.checks.activeDepot,
-    passed: true,
+    passed: false,
   },
   {
     id: appTexts.dashboardTexts.readinessChecklist.ids.activeVehicle,
     label: appTexts.dashboardTexts.readinessChecklist.checks.activeVehicle,
-    passed: true,
+    passed: false,
   },
   {
     id: appTexts.dashboardTexts.readinessChecklist.ids.capacity,
     label: appTexts.dashboardTexts.readinessChecklist.checks.capacity,
-    passed: true,
+    passed: false,
   },
 ];
