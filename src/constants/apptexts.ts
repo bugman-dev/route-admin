@@ -61,6 +61,18 @@ export const appTexts = {
         capacity: "capacity",
       },
     },
+    fleetActivity: {
+      title: "Fleet Activity",
+      viewRoutes: "View routes",
+      scheduledStops: "Scheduled stops",
+      activeVehicles: "Active vehicles",
+      routeCoverage: "Route coverage",
+      ids: {
+        scheduledStops: "scheduled-stops",
+        activeVehicles: "active-vehicles",
+        routeCoverage: "route-coverage",
+      },
+    },
   },
 
   statusTexts: {

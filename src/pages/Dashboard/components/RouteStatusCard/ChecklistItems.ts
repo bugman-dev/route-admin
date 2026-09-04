@@ -1,6 +1,7 @@
 import { appTexts } from "@ra/constants/apptexts";
+import type { CheckListData } from "@ra/interfaces/dashboard";
 
-export const ChecklistItems = [
+export const ChecklistItems: CheckListData[] = [
   {
     id: appTexts.dashboardTexts.readinessChecklist.ids.activeWaypoint,
     label: appTexts.dashboardTexts.readinessChecklist.checks.activeWaypoint,

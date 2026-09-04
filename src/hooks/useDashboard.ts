@@ -2,11 +2,14 @@ import { getTotalCapacity, getTotalVehicles } from "@ra/factory/vehiclesFactory"
 import { getTotalDemand, getTotalWaypoints, getWaypointDepots } from "@ra/factory/waypointsFactory";
 import { getLastGeneratedRoutes } from "@ra/factory/routesFactory";
 import { appTexts } from "@ra/constants/apptexts";
-import type { CheckListData, UseDashboardReturn } from "@ra/interfaces/dashboard";
+import type { UseDashboardProps, UseDashboardReturn } from "@ra/interfaces/dashboard";
 import { useEffect, useState } from "react";
 import appColors from "@ra/assets/colors/appColors";
 
-export const useDashboard = (checkListData: CheckListData[]): UseDashboardReturn => {
+export const useDashboard = ({
+  checklistData,
+  fleetActivityData,
+}: UseDashboardProps): UseDashboardReturn => {
   const [waypoints, setWaypoints] = useState(0);
   const [vehicles, setVehicles] = useState(0);
   const [totalDemand, setTotalDemand] = useState(0);
@@ -16,7 +19,10 @@ export const useDashboard = (checkListData: CheckListData[]): UseDashboardReturn
 
   // Readyness Checklist States
   const [hasExactlyOneDepot, setHasExactlyOneDepot] = useState(false);
-  const [controlledChecklistData, setControlledChecklistData] = useState(checkListData);
+  const [controlledChecklistData, setControlledChecklistData] = useState(checklistData);
+
+  // Fleet Activity States
+  const [controlledFleetActivityData, setControlledFleetActivityData] = useState(fleetActivityData);
 
   useEffect(() => {
     let cancelled = false;
@@ -127,6 +133,27 @@ export const useDashboard = (checkListData: CheckListData[]): UseDashboardReturn
     );
   }, [hasExactlyOneDepot, waypoints, vehicles, totalDemand, capacity]);
 
+  // Fleet Activity Data
+  useEffect(() => {
+    const ids = appTexts.dashboardTexts.fleetActivity.ids;
+    setControlledFleetActivityData((prev) =>
+      prev.map((item) => {
+        if (item.id === ids.scheduledStops) {
+          return { ...item, value: waypoints.toString() };
+        }
+        if (item.id === ids.activeVehicles) {
+          return { ...item, value: vehicles.toString() };
+        }
+        if (item.id === ids.routeCoverage) {
+          const coverage =
+            vehicles === 0 ? 0 : Math.round((waypoints / vehicles) * 100);
+          return { ...item, value: `${coverage}%` };
+        }
+        return item;
+      }),
+    );
+  }, [waypoints, vehicles]);
+
   return {
     waypoints,
     vehicles,
@@ -138,6 +165,7 @@ export const useDashboard = (checkListData: CheckListData[]): UseDashboardReturn
     cachedLastGeneration,
     lastGeneratedServiceDate,
     controlledChecklistData,
+    controlledFleetActivityData,
     readyToGenerate: controlledChecklistData.every((item) => item.passed),
   };
 };

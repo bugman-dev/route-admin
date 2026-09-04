@@ -51,7 +51,13 @@ export interface CheckListData {
   passed: boolean;
 }
 
-// Hook return types
+export interface FleetActivityData {
+  id: string;
+  label: string;
+  value: string;
+}
+
+// Hook Interfaces
 export interface UseDashboardReturn {
   waypoints: number;
   vehicles: number;
@@ -68,5 +74,11 @@ export interface UseDashboardReturn {
   lastGeneratedServiceDate: string | null;
 
   controlledChecklistData: CheckListData[];
+  controlledFleetActivityData: FleetActivityData[];
   readyToGenerate: boolean;
+}
+
+export interface UseDashboardProps {
+  checklistData: CheckListData[];
+  fleetActivityData: FleetActivityData[];
 }

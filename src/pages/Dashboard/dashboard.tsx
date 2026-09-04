@@ -1,12 +1,13 @@
 import PageHeader from "@ra/components/PageHeader/PageHeader";
 import { appTexts } from "@ra/constants/apptexts";
-import appColors from "@ra/assets/colors/appColors";
 import { useDashboard } from "@ra/hooks/useDashboard";
 import { formatServiceDateIst } from "@ra/utils/helperFunctions.utils";
 import DashboardCard from "./components/DashboardCard/DashboardCard";
 import RouteStatusCard from "./components/RouteStatusCard/RouteStatusCard";
 import ReadinessChecklist from "./components/ReadinessChecklist/ReadinessChecklist";
+import FleetActivity from "./components/FleetActivity/FleetActivity";
 import { ChecklistItems } from "./components/RouteStatusCard/ChecklistItems";
+import { FleetActivityList } from "./components/FleetActivity/FleetActivityList";
 
 export default function Dashboard() {
   const {
@@ -19,9 +20,9 @@ export default function Dashboard() {
     cachedLastGeneration,
     lastGeneratedServiceDate,
     controlledChecklistData,
+    controlledFleetActivityData,
     readyToGenerate,
-  } = useDashboard(ChecklistItems);
-  console.log(controlledChecklistData);
+  } = useDashboard({ checklistData: ChecklistItems, fleetActivityData: FleetActivityList });
 
   return (
     <section>
@@ -69,7 +70,11 @@ export default function Dashboard() {
             items={controlledChecklistData}
             readyToGenerate={readyToGenerate}
           />
-          <p>Pending routes</p>
+          <FleetActivity
+            title={appTexts.dashboardTexts.fleetActivity.title}
+            actionLabel={appTexts.dashboardTexts.fleetActivity.viewRoutes}
+            stats={controlledFleetActivityData}
+          />
         </div>
         <div>
           <p>Placeholder text</p>
