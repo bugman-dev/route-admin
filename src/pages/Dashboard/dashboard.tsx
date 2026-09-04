@@ -6,8 +6,10 @@ import DashboardCard from "./components/DashboardCard/DashboardCard";
 import RouteStatusCard from "./components/RouteStatusCard/RouteStatusCard";
 import ReadinessChecklist from "./components/ReadinessChecklist/ReadinessChecklist";
 import FleetActivity from "./components/FleetActivity/FleetActivity";
+import SystemHealth from "./components/SystemHealth/SystemHealth";
 import { ChecklistItems } from "./components/RouteStatusCard/ChecklistItems";
 import { FleetActivityList } from "./components/FleetActivity/FleetActivityList";
+import { SystemHealthList } from "./components/SystemHealth/SystemHealthList";
 
 export default function Dashboard() {
   const {
@@ -21,8 +23,13 @@ export default function Dashboard() {
     lastGeneratedServiceDate,
     controlledChecklistData,
     controlledFleetActivityData,
+    controlledSystemHealthData,
     readyToGenerate,
-  } = useDashboard({ checklistData: ChecklistItems, fleetActivityData: FleetActivityList });
+  } = useDashboard({
+    checklistData: ChecklistItems,
+    fleetActivityData: FleetActivityList,
+    systemHealthData: SystemHealthList,
+  });
 
   return (
     <section>
@@ -76,8 +83,11 @@ export default function Dashboard() {
             stats={controlledFleetActivityData}
           />
         </div>
-        <div>
-          <p>Placeholder text</p>
+        <div className="flex flex-col gap-4">
+          <SystemHealth
+            title={appTexts.dashboardTexts.systemHealth.title}
+            items={controlledSystemHealthData}
+          />
           <p>Placeholder text</p>
         </div>
       </div>

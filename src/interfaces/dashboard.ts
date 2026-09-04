@@ -1,3 +1,5 @@
+import type { SystemHealthItem } from "@ra/interfaces/systemHealth";
+
 // API Responses Types
 export interface TotalWaypointsResponse {
   total_waypoints: number;
@@ -75,10 +77,12 @@ export interface UseDashboardReturn {
 
   controlledChecklistData: CheckListData[];
   controlledFleetActivityData: FleetActivityData[];
+  controlledSystemHealthData: SystemHealthItem[];
   readyToGenerate: boolean;
 }
 
 export interface UseDashboardProps {
   checklistData: CheckListData[];
   fleetActivityData: FleetActivityData[];
+  systemHealthData: SystemHealthItem[];
 }

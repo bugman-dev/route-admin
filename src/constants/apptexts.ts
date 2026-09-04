@@ -73,6 +73,17 @@ export const appTexts = {
         routeCoverage: "route-coverage",
       },
     },
+    systemHealth: {
+      title: "System Health",
+      backendApi: "Backend API",
+      database: "Database",
+      routingOsrm: "Routing / OSRM",
+      ids: {
+        backendApi: "backend-api",
+        database: "database",
+        routingOsrm: "routing-osrm",
+      },
+    },
   },
 
   statusTexts: {

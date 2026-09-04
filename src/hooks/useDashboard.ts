@@ -1,6 +1,7 @@
 import { getTotalCapacity, getTotalVehicles } from "@ra/factory/vehiclesFactory";
 import { getTotalDemand, getTotalWaypoints, getWaypointDepots } from "@ra/factory/waypointsFactory";
 import { getLastGeneratedRoutes } from "@ra/factory/routesFactory";
+import { getHealth } from "@ra/factory/healthFactory";
 import { appTexts } from "@ra/constants/apptexts";
 import type { UseDashboardProps, UseDashboardReturn } from "@ra/interfaces/dashboard";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import appColors from "@ra/assets/colors/appColors";
 export const useDashboard = ({
   checklistData,
   fleetActivityData,
+  systemHealthData,
 }: UseDashboardProps): UseDashboardReturn => {
   const [waypoints, setWaypoints] = useState(0);
   const [vehicles, setVehicles] = useState(0);
@@ -23,6 +25,9 @@ export const useDashboard = ({
 
   // Fleet Activity States
   const [controlledFleetActivityData, setControlledFleetActivityData] = useState(fleetActivityData);
+
+  // System Health States
+  const [controlledSystemHealthData, setControlledSystemHealthData] = useState(systemHealthData);
 
   useEffect(() => {
     let cancelled = false;
@@ -79,10 +84,47 @@ export const useDashboard = ({
       }
     };
 
+    const loadSystemHealth = async () => {
+      const ids = appTexts.dashboardTexts.systemHealth.ids;
+      const toStatus = (isOk: boolean) =>
+        isOk
+          ? { status: appTexts.statusTexts.healthy, healthy: true }
+          : { status: appTexts.statusTexts.critical, healthy: false };
+
+      try {
+        const health = await getHealth();
+        if (cancelled) return;
+
+        const backendOk = health.status === "ok";
+        const databaseOk = health.database === "ok";
+        const routingOk = health.osrm === "ok" && health.engine === "ok";
+
+        setControlledSystemHealthData((prev) =>
+          prev.map((item) => {
+            if (item.id === ids.backendApi) {
+              return { ...item, ...toStatus(backendOk) };
+            }
+            if (item.id === ids.database) {
+              return { ...item, ...toStatus(databaseOk) };
+            }
+            if (item.id === ids.routingOsrm) {
+              return { ...item, ...toStatus(routingOk) };
+            }
+            return item;
+          }),
+        );
+      } catch {
+        if (cancelled) return;
+        setControlledSystemHealthData((prev) =>
+          prev.map((item) => ({ ...item, ...toStatus(false) })),
+        );
+      }
+    };
+
     void loadDashboardTotals();
     void loadLastGeneratedRoutes();
-
     void loadWaypointDepots();
+    void loadSystemHealth();
 
     return () => {
       cancelled = true;
@@ -145,8 +187,7 @@ export const useDashboard = ({
           return { ...item, value: vehicles.toString() };
         }
         if (item.id === ids.routeCoverage) {
-          const coverage =
-            vehicles === 0 ? 0 : Math.round((waypoints / vehicles) * 100);
+          const coverage = vehicles === 0 ? 0 : Math.round((waypoints / vehicles) * 100);
           return { ...item, value: `${coverage}%` };
         }
         return item;
@@ -166,6 +207,7 @@ export const useDashboard = ({
     lastGeneratedServiceDate,
     controlledChecklistData,
     controlledFleetActivityData,
+    controlledSystemHealthData,
     readyToGenerate: controlledChecklistData.every((item) => item.passed),
   };
 };
