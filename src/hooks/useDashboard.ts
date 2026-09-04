@@ -210,6 +210,7 @@ export const useDashboard = ({
   // Fleet Activity Data
   useEffect(() => {
     const ids = appTexts.dashboardTexts.fleetActivity.ids;
+
     setControlledFleetActivityData((prev) =>
       prev.map((item) => {
         if (item.id === ids.scheduledStops) {
@@ -219,13 +220,13 @@ export const useDashboard = ({
           return { ...item, value: vehicles.toString() };
         }
         if (item.id === ids.routeCoverage) {
-          const coverage = vehicles === 0 ? 0 : Math.round((waypoints / vehicles) * 100);
+          const coverage = capacity === 0 ? 0 : Math.round((totalDemand / capacity) * 100);
           return { ...item, value: `${coverage}%` };
         }
         return item;
       }),
     );
-  }, [waypoints, vehicles]);
+  }, [totalDemand, capacity]);
 
   // Todays Route Summary
   useEffect(() => {
