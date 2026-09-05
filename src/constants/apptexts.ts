@@ -104,6 +104,17 @@ export const appTexts = {
     },
   },
 
+  // Waypoints Texts
+  waypointsTexts: {
+    pageHeader: {
+      title: "Waypoints",
+      subtitle: "Manage pickup and drop-off locations",
+    },
+    searchBox: {
+      placeholder: "Search waypoints",
+    },
+  },
+
   statusTexts: {
     healthy: "Healthy",
     unknown: "Unknown",
