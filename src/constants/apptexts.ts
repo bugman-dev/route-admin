@@ -113,6 +113,9 @@ export const appTexts = {
     searchBox: {
       placeholder: "Search waypoints",
     },
+    checkBox: {
+      label: "Active Only",
+    },
   },
 
   statusTexts: {
