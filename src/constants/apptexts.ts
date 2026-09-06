@@ -116,6 +116,9 @@ export const appTexts = {
     checkBox: {
       label: "Active Only",
     },
+    button: {
+      label: "Add Waypoints",
+    },
   },
 
   statusTexts: {
