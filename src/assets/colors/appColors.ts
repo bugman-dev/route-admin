@@ -16,6 +16,7 @@ const appColors = {
   secondaryRed: "#FFEFED",
   textGrey: "#5D6E8B",
   buttonHover: "#0151AB",
+  chipBackground: "#CBD5E1",
 };
 
 export default appColors;

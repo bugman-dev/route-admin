@@ -5,8 +5,25 @@ import CheckBox from "@ra/components/CheckBox";
 import ButtonPrimary from "@ra/components/ButtonPrimary";
 import PlusIconBase from "@ra/assets/icons/PlusIconBase";
 import Table, { Column } from "@ra/components/Table";
+import { mockData, type WaypointTableRow } from "./mockdata";
+import appColors from "@ra/assets/colors/appColors";
+import ToggleButton from "@ra/components/ToggleButton";
 
 export default function Waypoint() {
+  const generateDepotChip = (isDepot: boolean) => {
+    return (
+      <div
+        className="rounded-lg px-2 py-1 text-sm w-fit min-w-[40px] text-center"
+        style={{
+          backgroundColor: appColors.primaryBackground,
+          color: isDepot ? appColors.primary : appColors.textGrey,
+        }}
+      >
+        {isDepot ? "Yes" : "No"}
+      </div>
+    );
+  };
+
   return (
     <div>
       <PageHeader
@@ -14,7 +31,7 @@ export default function Waypoint() {
         subtitle={appTexts.waypointsTexts.pageHeader.subtitle}
       />
       <div id="pageWrapper" className="px-8 py-6">
-        <section id="actions" className="flex items-center justify-between mb-6">
+        <section id="actions" className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <SearchBox
               placeholder={appTexts.waypointsTexts.searchBox.placeholder}
@@ -38,65 +55,37 @@ export default function Waypoint() {
           />
         </section>
         <section id="table">
-          <Table
-            data={[
-              {
-                name: "John Doe",
-                latitude: 40.7128,
-                longitude: -74.006,
-                demand: 100,
-                depot: "yes",
-                active: true,
-              },
-              {
-                name: "Jane Doe",
-                latitude: 40.7128,
-                longitude: -74.006,
-                demand: 100,
-                depot: "No",
-                active: true,
-              },
-              {
-                name: "John Doe",
-                latitude: 40.7128,
-                longitude: -74.006,
-                demand: 100,
-                depot: "No",
-                active: true,
-              },
-              {
-                name: "Jane Doe",
-                latitude: 40.7128,
-                longitude: -74.006,
-                demand: 100,
-                depot: "No",
-                active: true,
-              },
-            ]}
-          >
-            <Column
+          <Table<WaypointTableRow> data={mockData}>
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.name}
               content={(rowData) => rowData.name}
             />
-            <Column
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.latitude}
               content={(rowData) => rowData.latitude}
             />
-            <Column
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.longitude}
               content={(rowData) => rowData.longitude}
             />
-            <Column
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.demand}
               content={(rowData) => rowData.demand}
             />
-            <Column
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.depot}
-              content={(rowData) => <p>{rowData.depot}</p>}
+              content={(rowData) => generateDepotChip(rowData.depot)}
             />
-            <Column
+            <Column<WaypointTableRow>
               header={appTexts.waypointsTexts.table.columns.active}
-              content={(rowData) => rowData.active}
+              content={(rowData) => (
+                <ToggleButton
+                  isActive={rowData.active ?? false}
+                  onToggle={(isActive) => {
+                    console.log(rowData.id, isActive);
+                  }}
+                />
+              )}
             />
           </Table>
         </section>
