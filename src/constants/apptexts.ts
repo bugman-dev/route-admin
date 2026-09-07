@@ -119,6 +119,16 @@ export const appTexts = {
     button: {
       label: "Add Waypoints",
     },
+    table: {
+      columns: {
+        name: "Name",
+        latitude: "Latitude",
+        longitude: "Longitude",
+        demand: "Demand",
+        depot: "Depot",
+        active: "Active",
+      },
+    },
   },
 
   statusTexts: {
